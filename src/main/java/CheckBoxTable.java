@@ -1,7 +1,4 @@
 import javax.swing.*;
-import javax.swing.table.JTableHeader;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class CheckBoxTable extends JTable {
 
@@ -21,15 +18,7 @@ public class CheckBoxTable extends JTable {
 
         model.setColumnIdentifiers(titleRow);
         this.getTableHeader().setReorderingAllowed(false);
-
-
-        this.getTableHeader().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int col = ((JTableHeader)e.getSource()).getTable().columnAtPoint(e.getPoint());
-                System.out.println(col);
-            }
-        });
+        model.updateColumnSize(numColumn + 1);
 
         //addListener(this);
 
@@ -61,27 +50,21 @@ public class CheckBoxTable extends JTable {
     public void addColumn() {
 
         Object[] columnData;
-        if (getRowCount() > 0) {
+        if (getRowCount() > 0)
             columnData = new Object[getRowCount() - 1];
-        }
-        else {
+        else
             columnData = new Object[0];
-        }
-        String columnName = DEFAULT_CHECKBOX_COlUMN_NAME + " " + getColumnCount();
-
-        for (Object c: columnData) {
-            c = false;
-        }
+        String columnName = DEFAULT_CHECKBOX_COlUMN_NAME + " " +
+                model.getLastKnownColumnSize();
+        for (Object c: columnData) { c = false; }
 
         model.addColumn(columnName, columnData);
+        model.updateColumnSize(0);
 
     }
 
-    public void removeRow(int rowIdx) { model.removeRow(rowIdx); }
+    public void removeRow(int row) { model.removeRow(row); }
 
-    public void removeColumn(int colIdx) {
-        this.removeColumn(this.getColumn(
-                DEFAULT_CHECKBOX_COlUMN_NAME + " " + colIdx));
-    }
+    public void removeColumn(int col) { model.removeColumn(col); }
 
 }

@@ -1,10 +1,11 @@
 import javax.swing.table.DefaultTableModel;
-import java.util.Vector;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class CheckBoxTableModel extends DefaultTableModel {
 
     private ArrayList<Boolean> editable_rows;
+    private int lastKnownColumnSize = 1;
 
     public CheckBoxTableModel() {
         super(new String[] {""}, 0);
@@ -26,21 +27,25 @@ public class CheckBoxTableModel extends DefaultTableModel {
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        return column > 0 || editable_rows.get(row);
+        return true;
     }
 
-    @Override
-    public void addRow(Object[] rowData) {
-        addRow(convertToVector(rowData));
-        editable_rows.add(false);
+    public void removeColumn(int col) {
+        columnIdentifiers.remove(col);
+        for (Object row: dataVector) {
+            ((Vector)row).remove(col);
+        }
+        fireTableStructureChanged();
     }
 
-    @Override
-    public void removeRow(int row) {
-        dataVector.remove(row);
-        fireTableRowsDeleted(row, row);
-        editable_rows.remove(row);
+    public void updateColumnSize(int col) {
+        if (col == 0)
+            lastKnownColumnSize++;
+        else
+            lastKnownColumnSize = col;
     }
+
+    public int getLastKnownColumnSize() { return lastKnownColumnSize; }
 
     public void setCellEditable(int row, int col, Boolean isEditable) {
         editable_rows.set(row, isEditable);

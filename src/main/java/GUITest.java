@@ -34,20 +34,12 @@ public class GUITest {
             JButton addColumn = new JButton("+C");
             frame.add(addColumn);
             addColumn.addActionListener(e-> cbt.addColumn());
-            //TableColumn column;
-            //DefaultCellEditor editor = new DefaultCellEditor(new JTextField());
-            //editor.setClickCountToStart(1);
-            //column = cbt.getColumnModel().getColumn(0);
-            //column.setCellEditor(editor);
-            //cbt.removeColumn(1);
-
-            //cbt.addMouseListener(new TableListener());
 
             frame.setSize(800,800);
 
             new TableRowContextMenu(cbt);
 
-            //frame.pack();
+            frame.pack();
             //frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
