@@ -12,35 +12,19 @@ public class GUITest {
 
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            }
+            catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                 ex.printStackTrace();
             }
 
-            CheckBoxTable cbt = new CheckBoxTable(1);
-
-            cbt.addColumn();
-            //cbt.addRow();
-
-            JFrame frame = new JFrame("Testing");
-            frame.setLayout(new FlowLayout());
+            JFrame frame = new JFrame("Test");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.add(new JScrollPane(cbt));
-            //cbt.addRow(new Object[]{5, true, true});
+            //frame.setLayout(new BorderLayout());
+            frame.add(new CheckBoxTablePanel(10));
 
-            JButton addRow = new JButton("+R");
-            frame.add(addRow);
-            addRow.addActionListener(e -> cbt.addRow());
-
-            JButton addColumn = new JButton("+C");
-            frame.add(addColumn);
-            addColumn.addActionListener(e-> cbt.addColumn());
-
-            frame.setSize(800,800);
-
-            new TableRowContextMenu(cbt);
-
-            frame.pack();
-            //frame.setLocationRelativeTo(null);
+            frame.setSize(800,500);
+            //frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
         });

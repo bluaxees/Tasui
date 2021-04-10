@@ -1,11 +1,11 @@
-import javax.swing.*;
+import javax.swing.JTable;
 
 public class CheckBoxTable extends JTable {
 
     private static CheckBoxTableModel model = new CheckBoxTableModel();
 
-    static String DEFAULT_CHECKBOX_COlUMN_NAME = "Week";
-    static String DEFAULT_ROW_IDENTIFIER_TITLE = "Courses";
+    public static String DEFAULT_CHECKBOX_COlUMN_NAME = "Week";
+    public static String DEFAULT_ROW_IDENTIFIER_TITLE = "Course";
 
     public CheckBoxTable(int numColumn) {
 
@@ -18,16 +18,14 @@ public class CheckBoxTable extends JTable {
 
         model.setColumnIdentifiers(titleRow);
         this.getTableHeader().setReorderingAllowed(false);
+        //this.getTableHeader().setResizingAllowed(false);
         model.updateColumnSize(numColumn + 1);
-
-        //addListener(this);
 
     }
 
     public CheckBoxTable(String[] tableRow) {
         super(model);
         model.setColumnIdentifiers(tableRow);
-
     }
 
     public CheckBoxTableModel getModel() {
