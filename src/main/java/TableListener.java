@@ -2,11 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.event.*;
 
-public class TableRowListener implements PopupMenuListener {
+public class TableListener implements PopupMenuListener {
 
     JTable table;
 
-    TableRowListener(JTable table) {
+    TableListener(JTable table) {
         this.table = table;
     }
 
@@ -26,7 +26,7 @@ public class TableRowListener implements PopupMenuListener {
                 table.changeSelection(row, 0,false, false);
             }
 
-            else if (row <= 0 && col > 0) {
+            else if (row == -1 && col > 0) {
                 table.setCellSelectionEnabled(false);
                 table.setColumnSelectionAllowed(true);
                 table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);

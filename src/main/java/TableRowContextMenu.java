@@ -32,7 +32,7 @@ class TableRowContextMenu extends ContextMenu {
 
         });
 
-        this.addPopupMenuListener(new TableRowListener(this.table));
+        this.addPopupMenuListener(new TableListener(this.table));
 
     }
 

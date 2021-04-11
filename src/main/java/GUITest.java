@@ -20,7 +20,8 @@ public class GUITest {
             JFrame frame = new JFrame("Test");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //frame.setLayout(new BorderLayout());
-            frame.add(new CheckBoxTablePanel(10));
+            //frame.add(new CheckBoxTablePanel(10));
+            frame.add(new CalendarModel(0, 2019));
 
             frame.setSize(800,500);
             //frame.pack();
